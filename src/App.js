@@ -1,25 +1,84 @@
-import logo from './logo.svg';
+
+
+import React,{useState} from "react";
 import './App.css';
 
-function App() {
+import SecondComponent from './components/Massage';
+import FirstComponents from "./components/AddTodo";
+//import ShowTodo from "./Components/ShowTodo";
+
+
+import { BrowserRouter as Router, Switch , Route , Link} from "react-router-dom";
+
+export default function App() {
+  const [inputText, setInputText] = useState("");
+  const [todos, setTodos] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+
+
+
+
+
+    <Router>
+      <div>
+      <header>
+        <h1 className="he">Wellcome Todo</h1>
+       
+        <Link to="/" > <h4 className="he1">--Go First Page</h4>   <p/></Link>
+     </header>
+     
+
+
+
+
+
+
+
+
+
+
+
+        <Switch>
+          <Route path="/secondcomponents" component>
+            <FirstComponents  inputText={inputText} todos={todos} setTodos={setTodos} setInputText={setInputText} />
+          </Route>
+          <Route path="/ShowTodo">
+          <SecondComponent todos={todos} setTodos={setTodos} />
+          </Route>
+         
+          <Route path="/">
+            <Home  />          
+          </Route>
+          
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+
+
+
+
+
+function Home() {
+  return(
+    <div>
+     <div className="da">
+         <h2 >
+             Add Item
+         </h2><p/>
+         <Link to="/secondcomponents" ><button className="bu">click</button>   <p/></Link><br/>
+         <h2 >
+             Show Items
+         </h2><p/>
+         <Link to="/ShowTodo" ><button className="bu">click</button>   <p/></Link>
+           
+        
+    </div>
+    </div>
+);
+}
+
